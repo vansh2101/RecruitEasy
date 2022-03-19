@@ -7,7 +7,7 @@ from .serializers import UserSerializer, InterviewSerializer, ApplicantSerialize
 
 # Create your views here.
 
-class UserList(generics.CreateAPIView):
+class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [permissions.AllowAny]
@@ -27,6 +27,16 @@ class UserList(generics.CreateAPIView):
 
 
 
+class UserData(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return User.objects.filter(username=user)
+
+
+
 class InterviewList(generics.ListCreateAPIView):
     queryset = interview.objects.all()
     serializer_class = InterviewSerializer
@@ -40,12 +50,14 @@ class InterviewList(generics.ListCreateAPIView):
 class InterviewDetailList(generics.RetrieveUpdateAPIView):
     queryset = interview.objects.all()
     serializer_class = InterviewSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
 
 class ApplicantList(generics.ListCreateAPIView):
     queryset = applicant.objects.all()
     serializer_class = ApplicantSerializer
+    permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
         interview = self.request.data['interview']

@@ -1,7 +1,13 @@
 export const get = async (url, token) => {
+    let header = {}
+
+    if(token){
+        header['Authorization'] = `Token ${token}`
+    }
+
     const res = await fetch(url, {
         method: 'GET',
-        headers: {'Authorization': `Token ${token}`}
+        headers: header
     })
     
     return await res.json()

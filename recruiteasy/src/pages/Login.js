@@ -5,6 +5,10 @@ import {get, post} from '../scripts/requests';
 
 
 function Login() {
+  if (localStorage.getItem('token')){
+      window.location = '/'
+  }
+  
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
 
@@ -16,10 +20,9 @@ function Login() {
     if (res.token){
         localStorage.setItem('token', res.token)
 
-        window.location = '/dashboard'
+        window.location = '/'
     }
   }
-
 
   return (
     <>

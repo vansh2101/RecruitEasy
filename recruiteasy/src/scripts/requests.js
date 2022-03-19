@@ -1,8 +1,9 @@
 export const get = async (url, token) => {
     const res = await fetch(url, {
         method: 'GET',
-        headers: {'Content-Type': 'application/json', 'Authorization': `Token ${token}`}
+        headers: {'Authorization': `Token ${token}`}
     })
+    
     return await res.json()
 }
 

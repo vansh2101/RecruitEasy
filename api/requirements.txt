@@ -1,0 +1,12 @@
+asgiref==3.5.0
+Django==4.0.3
+django-cors-headers==3.11.0
+django-environ==0.8.1
+django-rest-framework==0.1.0
+djangorestframework==3.13.1
+python-http-client==3.3.7
+pytz==2021.3
+sendgrid==6.9.7
+sqlparse==0.4.2
+starkbank-ecdsa==2.0.3
+tzdata==2021.5

@@ -1,0 +1,5 @@
+/api/venv
+/api/api/.env
+/api/db.sqlite3
+/html
+/recruiteasy/node_modules

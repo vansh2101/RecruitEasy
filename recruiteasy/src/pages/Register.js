@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
-import '../styles/output.css'
+import React, {useState} from 'react';
+import '../styles/output.css';
 import {Link} from 'react-router-dom';
 import {get, post} from '../scripts/requests';
+import image from '../assets/hire.png';
 
 
 function Register() {
@@ -29,52 +30,106 @@ function Register() {
 
   return (
     <>
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <div className="px-8 py-6 text-left bg-white shadow-lg">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 font-mono">
 
-            <div className="flex justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-20 h-20 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path d="M12 14l9-5-9-5-9 5 9 5z" />
-                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-                </svg>
-            </div>
+    {/* Container */}
+        <div className="container mx-auto">
+            <div className="flex justify-center px-6 my-12">
 
-            <h3 className="text-2xl font-bold text-center px-10">Create a new Account</h3>
+                {/* Row */}
+                <div className="w-full xl:w-3/4 lg:w-11/12 flex">
 
-            <form onSubmit={register}>
-                <div className="mt-4">
-                    <div>
-                        <label className="block">Company Name</label>
-                        <input type="text" placeholder="Company Name" className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" onChange={(val) => {setName(val.target.value)}} required />
-                    </div>
+                    {/* Col */}
+                    <div className="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg" style={{backgroundImage: `url(${image})`}} />
 
-                    <div className="mt-4">
-                        <label className="block">Email</label>
-                        <input type="email" placeholder="Email" className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" onChange={(val) => {setEmail(val.target.value)}} required />
-                    </div>
+                    {/* Col */}
+                    <div className="w-full lg:w-6/12 bg-white p-5 rounded-lg lg:rounded-l-none">
 
-                    <div className="mt-4">
-                        <label className="block">Password</label>
-                        <input type="password" placeholder="Password" className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" onChange={(val) => {setPassword(val.target.value)}} required />
-                    </div>
+                        <h3 className="pt-4 text-2xl text-center">Create an Account!</h3>
 
-                    <div className="mt-4">
-                        <label className="block">Confirm Password</label>
-                        <input type="password" placeholder="Confirm Password" className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" onChange={(val) => {setPass(val.target.value)}} required />
-                    </div>
+                        <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded">
+                            <div className="mb-4">
+                                <label className="block mb-2 text-sm font-bold text-gray-700">
+                                    Company Name
+                                </label>
+                                <input
+                                    className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                    type="text"
+                                    placeholder="Company Name"
+                                    onChange={(val) => setName(val.target.value)}
+                                />
+                            </div>
 
-                    <div className="flex items-baseline justify-between">
-                        <button className="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Register</button>
-                        <Link to="/login" className="text-sm text-blue-600 hover:underline">Already have an account</Link>
+                            <div className="mb-4">
+                                <label className="block mb-2 text-sm font-bold text-gray-700" for="email">
+                                    Email
+                                </label>
+                                <input
+                                    className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                    id="email"
+                                    type="email"
+                                    placeholder="Email"
+                                    onChange={(val) => setEmail(val.target.value)}
+                                />
+                            </div>
+
+                            <div className="mb-4 md:flex md:justify-between">
+                                <div className="mb-4 md:mr-2 md:mb-0">
+                                    <label className="block mb-2 text-sm font-bold text-gray-700" for="password">
+                                        Password
+                                    </label>
+                                    <input
+                                        className="w-52 px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                        id="password"
+                                        type="password"
+                                        placeholder="******************"
+                                        onChange={(val) => setPassword(val.target.value)}
+                                    />
+                                </div>
+
+                                <div className="md:ml-2">
+                                    <label className="block mb-2 text-sm font-bold text-gray-700" for="c_password">
+                                        Confirm Password
+                                    </label>
+                                    <input
+                                        className="w-52 px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                        id="c_password"
+                                        type="password"
+                                        placeholder="******************"
+                                        onChange={(val) => setPass(val.target.value)}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="mb-6 text-center">
+                                <button
+                                    className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+                                    type="button"
+                                    onClick={register}
+                                >
+                                    Register Account
+                                </button>
+                            </div>
+
+                            <hr className="mb-6 border-t" />
+
+                            <div className="text-center">
+                                <Link className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800" to="#">
+                                    Forgot Password?
+                                </Link>
+                            </div>
+
+                            <div className="text-center">
+                                <Link className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800" to="/login">
+                                    Already have an account? Login!
+                                </Link>
+                            </div>
+                            
+                        </form>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
-    
-    <div>
-        <img style={{width: "100px", height: "40px"}} src="images/login.svg" alt="" />
     </div>
     </>
   )

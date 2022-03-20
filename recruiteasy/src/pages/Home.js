@@ -14,7 +14,7 @@ function Home() {
 
   useEffect(() => {
       (async () => {
-        const res = await get('http://vansh2101.pythonanywhere.com/api/interview/', token)
+        const res = await get('https://b2bc-2405-201-4004-a04c-d5aa-285f-10b0-3687.ngrok.io/api/interview/', token)
 
         setInterview(res)
       })()

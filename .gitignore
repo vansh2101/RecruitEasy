@@ -2,4 +2,5 @@
 /api/api/.env
 /api/db.sqlite3
 /recruiteasy/node_modules
+/recruiteasy/.env
 

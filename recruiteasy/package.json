@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
+    "dotenv": "^16.0.0",
     "firebase": "^9.6.9",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^7.4.2",

@@ -1,5 +1,7 @@
+require('dotenv').config()
+
 export const firebaseConfig = {
-    apiKey: "AIzaSyB-AbSeCrXW_Xm764vKIq1sSr9IPiyo9oE",
+    apiKey: process.env.REACT_APP_FIREBASE_KEY,
     authDomain: "recruiteasy-ed25f.firebaseapp.com",
     projectId: "recruiteasy-ed25f",
     storageBucket: "recruiteasy-ed25f.appspot.com",

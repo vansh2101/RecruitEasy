@@ -62,3 +62,9 @@ class ApplicantList(generics.ListCreateAPIView):
     def get_queryset(self):
         interview = self.request.headers['interview']
         return applicant.objects.filter(interview=interview)
+
+
+
+class ApplicantDetails(generics.RetrieveAPIView):
+    queryset = applicant.objects.all()
+    serializer_class = ApplicantSerializer

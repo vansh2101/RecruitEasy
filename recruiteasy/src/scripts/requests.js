@@ -36,7 +36,7 @@ export const post = async (url, token, body) => {
 
 export const patch = async (url, body) => {
     const res = await fetch(url, {
-        method: 'GET',
+        method: 'PATCH',
         body: JSON.stringify(body)
     })
     

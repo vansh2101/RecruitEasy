@@ -72,7 +72,8 @@ class Interview extends React.Component {
         });
     };
 
-    save = async () => {
+    save = async (e) => {
+        e.preventDefault()
         document.getElementById('load').classList.remove('hidden')
         if (this.state.tab !== 0){
             this.player.record().stop()

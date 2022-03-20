@@ -39,7 +39,7 @@ class Interview extends React.Component {
     }
     
     componentDidMount() {
-        get(`https://b2bc-2405-201-4004-a04c-d5aa-285f-10b0-3687.ngrok.io/api/interview/${this.state.id}`, null).then((res) => {this.setState({question: res.questions, title: res.title, host: res.host, applicants: res.applicants})})
+        get(`http://vansh2101.pythonanywhere.com/api/interview/${this.state.id}`, null).then((res) => {this.setState({question: res.questions, title: res.title, host: res.host, applicants: res.applicants})})
 
         const videoJsOptions = {
             controls: true,
@@ -92,7 +92,7 @@ class Interview extends React.Component {
             this.setState({tab: this.state.tab+1})
         }
         else{
-            const res = await post('https://b2bc-2405-201-4004-a04c-d5aa-285f-10b0-3687.ngrok.io/api/applicant/', null, {
+            const res = await post('http://vansh2101.pythonanywhere.com/api/applicant/', null, {
                 name: this.state.name,
                 email: this.state.email,
                 desc: this.state.desc,
@@ -100,7 +100,7 @@ class Interview extends React.Component {
                 video: this.state.urls
             })
 
-            const data = await patch(`https://b2bc-2405-201-4004-a04c-d5aa-285f-10b0-3687.ngrok.io/api/interview/${this.state.id}`, {'applicants': this.state.applicants+1})
+            const data = await patch(`http://vansh2101.pythonanywhere.com/api/interview/${this.state.id}`, {'applicants': this.state.applicants+1})
 
             this.setState({tab: -1})
         }

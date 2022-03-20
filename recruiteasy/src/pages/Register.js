@@ -19,7 +19,7 @@ function Register() {
     e.preventDefault()
 
     if (password === pass){
-        const res = await post('https://b2bc-2405-201-4004-a04c-d5aa-285f-10b0-3687.ngrok.io/api/register/', null, {username: email, email: email, first_name: name, password: password})
+        const res = await post('http://vansh2101.pythonanywhere.com/api/register/', null, {username: email, email: email, first_name: name, password: password})
         window.location = '/login'
     }
     else{

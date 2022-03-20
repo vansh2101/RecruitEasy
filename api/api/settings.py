@@ -148,6 +148,7 @@ REST_FRAMEWORK = {
 ################# CORS SETTINGS ###############################
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
+    'https://www.hiringmadeasywith.tech'
 ]
 
 CORS_ALLOW_HEADERS = ('content-disposition', 'accept-encoding',

@@ -15,10 +15,10 @@ function Login() {
   const login = async (e) => {
     e.preventDefault()
       
-    const res = await post('https://b2bc-2405-201-4004-a04c-d5aa-285f-10b0-3687.ngrok.io/api-token-auth/', null, {username: email, password: password})
+    const res = await post('http://vansh2101.pythonanywhere.com/api-token-auth/', null, {username: email, password: password})
 
     if (res.token){
-        const user = await get('https://b2bc-2405-201-4004-a04c-d5aa-285f-10b0-3687.ngrok.io/api/user/', res.token)
+        const user = await get('http://vansh2101.pythonanywhere.com/api/user/', res.token)
 
         localStorage.setItem('token', res.token)
         localStorage.setItem('user', user[0].id)

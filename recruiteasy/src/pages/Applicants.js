@@ -18,10 +18,10 @@ function Applicants() {
 
   useEffect(() => {
       (async () => {
-          const res = await get('https://b2bc-2405-201-4004-a04c-d5aa-285f-10b0-3687.ngrok.io/api/applicant/', token, {interview: id})
+          const res = await get('http://vansh2101.pythonanywhere.com/api/applicant/', token, {interview: id})
           setApplicants(res)
 
-          const data = await get(`https://b2bc-2405-201-4004-a04c-d5aa-285f-10b0-3687.ngrok.io/api/interview/${id}`, token)
+          const data = await get(`http://vansh2101.pythonanywhere.com/api/interview/${id}`, token)
           setInterview(data)
       })()
   }, [])
@@ -40,7 +40,7 @@ function Applicants() {
 
     document.getElementById('sendbtn').disabled = true
     
-    await post('https://b2bc-2405-201-4004-a04c-d5aa-285f-10b0-3687.ngrok.io/twilio/send/', token, {
+    await post('http://vansh2101.pythonanywhere.com/twilio/send/', token, {
         email: em ? em : email,
         subject: 'Interview Invite',
         msg: msg[id]

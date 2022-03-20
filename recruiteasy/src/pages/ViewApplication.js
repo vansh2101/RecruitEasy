@@ -15,10 +15,10 @@ function ViewApplication() {
 
   useEffect(() => {
     (async () => {
-      const res = await get(`https://b2bc-2405-201-4004-a04c-d5aa-285f-10b0-3687.ngrok.io/api/applicant/${id}`, token)
+      const res = await get(`http://vansh2101.pythonanywhere.com/api/applicant/${id}`, token)
       setUser(res)
 
-      const data = await get(`https://b2bc-2405-201-4004-a04c-d5aa-285f-10b0-3687.ngrok.io/api/interview/${res.interview}`, token)
+      const data = await get(`http://vansh2101.pythonanywhere.com/api/interview/${res.interview}`, token)
       setQuestion(data.questions)
     })()
   }, [])

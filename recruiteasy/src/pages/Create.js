@@ -34,7 +34,7 @@ function Create() {
   const submit = async (e) => {
       e.preventDefault()
 
-      const res = await post('https://b2bc-2405-201-4004-a04c-d5aa-285f-10b0-3687.ngrok.io/api/interview/', token, {
+      const res = await post('http://vansh2101.pythonanywhere.com/api/interview/', token, {
           title: title,
           date: date,
           from_time: from,
@@ -60,7 +60,7 @@ function Create() {
   const sendmail = async () => {
     document.getElementById('sendbtn').disabled = true
     
-    await post('https://b2bc-2405-201-4004-a04c-d5aa-285f-10b0-3687.ngrok.io/twilio/send/', token, {
+    await post('http://vansh2101.pythonanywhere.com/twilio/send/', token, {
         email: email,
         subject: 'Interview Invite',
         msg: `Hey!! <br>${localStorage.getItem('name')} has invited you to take their job interview. <br><a href=${url}>Click to give the interview</a>`

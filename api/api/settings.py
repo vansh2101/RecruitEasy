@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import environ
+import os
+import django_heroku
 
 env = environ.Env()
 environ.Env.read_env()
@@ -29,7 +31,9 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'https://recruiteasy.herokuapp.com'
+]
 
 
 # Application definition
@@ -148,8 +152,14 @@ REST_FRAMEWORK = {
 ################# CORS SETTINGS ###############################
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
-    'https://www.hiringmadeasywith.tech'
+    'https://www.hiringmadeasywith.tech',
+    'https://recruiteasy.herokuapp.com'
 ]
 
 CORS_ALLOW_HEADERS = ('content-disposition', 'accept-encoding',
                       'content-type', 'accept', 'origin', 'authorization', 'interview')
+
+
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())

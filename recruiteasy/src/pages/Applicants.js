@@ -18,10 +18,10 @@ function Applicants() {
 
   useEffect(() => {
       (async () => {
-          const res = await get('http://vansh2101.pythonanywhere.com/api/applicant/', token, {interview: id})
+          const res = await get('https://recruiteasy.herokuapp.com/api/applicant/', token, {interview: id})
           setApplicants(res)
 
-          const data = await get(`http://vansh2101.pythonanywhere.com/api/interview/${id}`, token)
+          const data = await get(`https://recruiteasy.herokuapp.com/api/interview/${id}`, token)
           setInterview(data)
       })()
   }, [])
@@ -33,14 +33,14 @@ function Applicants() {
 
   const sendmail = async (id, em=null) => {
     const msg = [
-        `Hey!! <br>${name} has invited you to take their job interview. <br><a href='http:localhost:8000/interview#${id}'>Click to give the interview</a>`,
+        `Hey!! <br>${name} has invited you to take their job interview. <br><a href='http:localhost:3000/interview#${id}'>Click to give the interview</a>`,
         `Hey!! <br>Sorry to say that ${name} did not pass you in its job interview that you gave. <br>Don't get disheartened and keep trying your best. <br><br>We wish you all the best.`,
         `Hey!! <br>Congratulations!! <br>${name} has accepted you for its job. <br>Woohoooo!!`
     ]
 
     document.getElementById('sendbtn').disabled = true
     
-    await post('http://vansh2101.pythonanywhere.com/twilio/send/', token, {
+    await post('https://recruiteasy.herokuapp.com/twilio/send/', token, {
         email: em ? em : email,
         subject: 'Interview Invite',
         msg: msg[id]
@@ -85,7 +85,7 @@ function Applicants() {
                                 <tr>
                                     <th colSpan={5}>
                                         <h5 className="text-gray-500 text-sm leading-tight font-medium mb-4 ml-4">
-                                            {`http:localhost:8000/interview#${id}`}
+                                            {`http:localhost:3000/interview#${id}`}
                                             <button className="px-3 py-1 text-xs text-white bg-blue-400 rounded ml-10" onClick={() => {document.getElementById('share').classList.remove('hidden')}}>
                                                 Share
                                             </button>

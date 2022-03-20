@@ -1,8 +1,12 @@
-export const get = async (url, token) => {
+export const get = async (url, token, extra={}) => {
     let header = {}
 
     if(token){
         header['Authorization'] = `Token ${token}`
+    }
+
+    if(Object.keys(extra).length > 0){
+        header = Object.assign({}, header, extra)
     }
 
     const res = await fetch(url, {
@@ -26,5 +30,15 @@ export const post = async (url, token, body) => {
         headers: header,
         body: JSON.stringify(body)
     })
+    return await res.json()
+}
+
+
+export const patch = async (url, body) => {
+    const res = await fetch(url, {
+        method: 'GET',
+        body: JSON.stringify(body)
+    })
+    
     return await res.json()
 }

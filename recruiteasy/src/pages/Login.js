@@ -22,6 +22,7 @@ function Login() {
 
         localStorage.setItem('token', res.token)
         localStorage.setItem('user', user[0].id)
+        localStorage.setItem('name', user[0].first_name)
 
         window.location = '/'
     }

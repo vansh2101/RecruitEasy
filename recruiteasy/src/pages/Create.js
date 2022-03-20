@@ -15,6 +15,8 @@ function Create() {
   const [from, setFrom] = useState()
   const [to, setTo] = useState()
   const [question, setQuestion] = useState([])
+  const [url, setUrl] = useState()
+  const [email, setEmail] = useState()
 
   const increaseCount = () => {
       setCount(prev => {
@@ -41,9 +43,31 @@ function Create() {
           host: user
       })
 
-      console.log(`http://localhost:3000/interview#${res.id}`)
+      setUrl(`${window.location.origin}/interview#${res.id}`)
 
-      window.location = '/'
+      document.getElementById('modal').classList.remove('hidden')
+  }
+
+  const gohome = () => {
+    window.location = '/'
+  }
+
+  const openshare = () => {
+    document.getElementById('modal').classList.add('hidden')
+    document.getElementById('share').classList.remove('hidden')
+  }
+
+  const sendmail = async () => {
+    document.getElementById('sendbtn').disabled = true
+    
+    await post('http://localhost:8000/twilio/send/', token, {
+        email: email,
+        subject: 'Interview Invite',
+        msg: `Hey!! <br>${localStorage.getItem('name')} has invited you to take their job interview. <br><a href=${url}>Click to give the interview</a>`
+    })
+
+    setEmail('')
+    document.getElementById('sendbtn').disabled = false
   }
 
   return (
@@ -116,6 +140,60 @@ function Create() {
 
                 </div>
             </form>
+        </div>
+
+        <div className="modal fade bg-black bg-opacity-60 fixed hidden top-0 left-0 w-full h-full outline-none overflow-x-hidden overflow-y-auto" id="modal">
+            <div className="modal-dialog modal-dialog-centered relative w-auto pointer-events-none w-2/5 m-auto mt-48">
+                <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+                    <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+                        <h5 className="text-xl font-medium leading-normal text-gray-800" id="exampleModalScrollableLabel">
+                        Interview Scheduled Successfully
+                        </h5>
+                    </div>
+
+                    <div className="modal-body relative p-4">
+                        <p>
+                            Your Interview Url is:-
+                            <br />
+                            <b><i>{url}</i></b>
+                            </p>
+                    </div>
+
+                    <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+                        <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1" onClick={openshare}>
+                        Share Interview Link
+                        </button>
+
+                        <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1" onClick={gohome}>
+                        Go Back To home
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div className="modal fade bg-black bg-opacity-60 fixed hidden top-0 left-0 w-full h-full outline-none overflow-x-hidden overflow-y-auto" id="share">
+            <div className="modal-dialog modal-dialog-centered relative w-auto pointer-events-none w-2/5 m-auto mt-48">
+                <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+                    <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+                        <h5 className="text-xl font-medium leading-normal text-gray-800" id="exampleModalScrollableLabel">
+                        Share Link
+                        </h5>
+
+                        <button type="button" className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" onClick={gohome}>X</button>
+                    </div>
+
+                    <div className="modal-body relative p-4">
+                        <input className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" type="text" placeholder="Enter Email of Applicant" onChange={(val) => setEmail(val.target.value)} value={email} />
+                    </div>
+
+                    <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+                        <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1" onClick={sendmail} id='sendbtn'>
+                        Send Mail
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
   )

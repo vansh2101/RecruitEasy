@@ -9,6 +9,8 @@ import Register from './pages/Register';
 import Home from './pages/Home';
 import Create from './pages/Create';
 import Interview from './pages/Interview';
+import Applicants from './pages/Applicants';
+import ViewApplication from './pages/ViewApplication';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,6 +22,8 @@ ReactDOM.render(
         <Route path='/' element={<Home />} />
         <Route path='/create' element={<Create />} />
         <Route path='/interview' element={<Interview />} />
+        <Route path='/applicants' element={<Applicants />} />
+        <Route path='/applicant' element={<ViewApplication />} />
       </Routes>
     </BrowserRouter>
     

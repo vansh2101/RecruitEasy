@@ -60,5 +60,5 @@ class ApplicantList(generics.ListCreateAPIView):
     permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
-        interview = self.request.data['interview']
+        interview = self.request.headers['interview']
         return applicant.objects.filter(interview=interview)

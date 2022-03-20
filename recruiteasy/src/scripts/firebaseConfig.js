@@ -1,4 +1,4 @@
-require('dotenv').config()
+// require('dotenv').config()
 
 export const firebaseConfig = {
     apiKey: 'AIzaSyB-AbSeCrXW_Xm764vKIq1sSr9IPiyo9oE',

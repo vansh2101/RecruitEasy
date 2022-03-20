@@ -25,16 +25,13 @@ function Home() {
       window.location = '/login'
   }
 
-  const viewapplicants = id => {
-      window.location = `/applicants#${id}`
-  }
-
   return (
     <div className='bg-gray-100 h-screen'>
         <header className="text-blue-600 body-font">
             <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
 
                 <a className="flex title-font font-medium items-center text-blue-900 mb-4 md:mb-0">
+                <img src='images/logo.png' style={{width: '70px'}} />
                 <span className="ml-3 text-xl">RecruitEasy</span>
                 </a>
 
@@ -74,7 +71,9 @@ function Home() {
                         {item.applicants} Applicants
                     </p>
 
-                    <button type="button" className=" inline-block px-5 py-2 bg-blue-600 text-white font-medium text-md leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out mt-4" onClick={() => viewapplicants(item.id)}>View</button>
+                    <Link to={`/applicants#${item.id}`} >
+                    <button type="button" className=" inline-block px-5 py-2 bg-blue-600 text-white font-medium text-md leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out mt-4">View</button>
+                    </Link>
                 </div>
             )}
         </div>

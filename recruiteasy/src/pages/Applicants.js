@@ -11,6 +11,7 @@ function Applicants() {
 
   const id = window.location.hash.replace('#', '')
   const token = localStorage.getItem('token')
+  const name = localStorage.getItem('name')
   const [applicants, setApplicants] = useState([])
   const [interview, setInterview] = useState({title: ''})
   const [email, setEmail] = useState()
@@ -30,13 +31,19 @@ function Applicants() {
     window.location = '/login'
   }
 
-  const sendmail = async () => {
+  const sendmail = async (id, em=null) => {
+    const msg = [
+        `Hey!! <br>${name} has invited you to take their job interview. <br><a href='http:localhost:8000/interview#${id}'>Click to give the interview</a>`,
+        `Hey!! <br>Sorry to say that ${name} did not pass you in its job interview that you gave. <br>Don't get disheartened and keep trying your best. <br><br>We wish you all the best.`,
+        `Hey!! <br>Congratulations!! <br>${name} has accepted you for its job. <br>Woohoooo!!`
+    ]
+
     document.getElementById('sendbtn').disabled = true
     
     await post('http://localhost:8000/twilio/send/', token, {
-        email: email,
+        email: em ? em : email,
         subject: 'Interview Invite',
-        msg: `Hey!! <br>${localStorage.getItem('name')} has invited you to take their job interview. <br><a href='http:localhost:8000/interview#${id}'>Click to give the interview</a>`
+        msg: msg[id]
     })
 
     setEmail('')
@@ -49,6 +56,7 @@ function Applicants() {
             <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
 
                 <Link to='/' className="flex title-font font-medium items-center text-blue-900 mb-4 md:mb-0">
+                <img src='images/logo.png' style={{width: '70px'}} />
                 <span className="ml-3 text-xl">RecruitEasy</span>
                 </Link>
 
@@ -117,10 +125,10 @@ function Applicants() {
                                         <div className="text-sm text-gray-500">{item.email}</div>
                                     </td>
                                     <td className="px-6 py-4">
-                                        <button className="px-4 py-1 text-sm text-white bg-red-400 rounded w-1/2">Fail</button>
+                                        <button className="px-4 py-1 text-sm text-white bg-red-400 rounded w-1/2" onClick={() => sendmail(1, item.email)}>Fail</button>
                                     </td>
                                     <td className="px-6 py-4">
-                                        <button className="px-4 py-1 text-sm text-white bg-blue-400 rounded w-1/2">Pass</button>
+                                        <button className="px-4 py-1 text-sm text-white bg-blue-400 rounded w-1/2" onClick={() => sendmail(2, item.email)}>Pass</button>
                                     </td>
                                 </tr>
                                 )}
@@ -148,7 +156,7 @@ function Applicants() {
                     </div>
 
                     <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                        <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1" onClick={sendmail} id='sendbtn'>
+                        <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1" onClick={() => sendmail(0)} id='sendbtn'>
                         Send Mail
                         </button>
                     </div>

@@ -15,7 +15,7 @@ function Login() {
   const login = async (e) => {
     e.preventDefault()
       
-    const res = await post('//http://vansh2101.pythonanywhere.com/api-token-auth/', null, {username: email, password: password})
+    const res = await post('http://vansh2101.pythonanywhere.com/api-token-auth/', null, {username: email, password: password})
 
     if (res.token){
         const user = await get('http://vansh2101.pythonanywhere.com/api/user/', res.token)

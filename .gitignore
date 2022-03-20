@@ -3,3 +3,4 @@
 /api/db.sqlite3
 /html
 /recruiteasy/node_modules
+/recruiteasy/src/scripts/firebaseConfig.js

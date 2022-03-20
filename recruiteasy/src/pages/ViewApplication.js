@@ -43,7 +43,7 @@ function ViewApplication() {
                 <div className="w-full xl:w-3/4 lg:w-2/5 flex">
 
                     {/* Col */}
-                    <div className="w-full h-3/4 bg-gray-300 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg p-10 overflow-y-auto">
+                    <div className="w-full h-5/6 bg-gray-300 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg p-10 overflow-y-auto">
                       <h5 className="text-gray-500 text-sm leading-tight font-medium mb-0">Name</h5>
                       
                       <p className="text-black text-xl mb-3">
@@ -64,7 +64,7 @@ function ViewApplication() {
                     </div>
 
                     {/* Col */}
-                    <div className="w-full h-3/4 lg:w-3/5 bg-white p-5 pl-12 rounded-lg lg:rounded-l-none overflow-y-auto">
+                    <div className="w-full h-5/6 lg:w-3/5 bg-white p-5 pl-12 rounded-lg lg:rounded-l-none overflow-y-auto">
                       {question.map((item, key) => 
                         <>
                         <div className="-mx-3 md:flex mb-3">

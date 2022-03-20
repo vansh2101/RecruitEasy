@@ -19,7 +19,7 @@ function Register() {
     e.preventDefault()
 
     if (password === pass){
-        const res = await post('http://localhost:8000/api/register/', null, {username: email, email: email, first_name: name, password: password})
+        const res = await post('http://vansh2101.pythonanywhere.com/api/register/', null, {username: email, email: email, first_name: name, password: password})
         window.location = '/login'
     }
     else{

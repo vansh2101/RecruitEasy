@@ -34,7 +34,7 @@ function Create() {
   const submit = async (e) => {
       e.preventDefault()
 
-      const res = await post('http://localhost:8000/api/interview/', token, {
+      const res = await post('http://vansh2101.pythonanywhere.com/api/interview/', token, {
           title: title,
           date: date,
           from_time: from,
@@ -60,7 +60,7 @@ function Create() {
   const sendmail = async () => {
     document.getElementById('sendbtn').disabled = true
     
-    await post('http://localhost:8000/twilio/send/', token, {
+    await post('http://vansh2101.pythonanywhere.com/twilio/send/', token, {
         email: email,
         subject: 'Interview Invite',
         msg: `Hey!! <br>${localStorage.getItem('name')} has invited you to take their job interview. <br><a href=${url}>Click to give the interview</a>`

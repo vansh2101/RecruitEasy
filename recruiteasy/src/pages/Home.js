@@ -14,7 +14,7 @@ function Home() {
 
   useEffect(() => {
       (async () => {
-        const res = await get('http://localhost:8000/api/interview/', token)
+        const res = await get('http://vansh2101.pythonanywhere.com/api/interview/', token)
 
         setInterview(res)
       })()

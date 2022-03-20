@@ -18,10 +18,10 @@ function Applicants() {
 
   useEffect(() => {
       (async () => {
-          const res = await get('http://localhost:8000/api/applicant/', token, {interview: id})
+          const res = await get('http://vansh2101.pythonanywhere.com/api/applicant/', token, {interview: id})
           setApplicants(res)
 
-          const data = await get(`http://localhost:8000/api/interview/${id}`, token)
+          const data = await get(`http://vansh2101.pythonanywhere.com/api/interview/${id}`, token)
           setInterview(data)
       })()
   }, [])
@@ -40,7 +40,7 @@ function Applicants() {
 
     document.getElementById('sendbtn').disabled = true
     
-    await post('http://localhost:8000/twilio/send/', token, {
+    await post('http://vansh2101.pythonanywhere.com/twilio/send/', token, {
         email: em ? em : email,
         subject: 'Interview Invite',
         msg: msg[id]

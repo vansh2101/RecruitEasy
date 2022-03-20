@@ -15,10 +15,10 @@ function Login() {
   const login = async (e) => {
     e.preventDefault()
       
-    const res = await post('http://localhost:8000/api-token-auth/', null, {username: email, password: password})
+    const res = await post('http://vansh2101.pythonanywhere.com/api-token-auth/', null, {username: email, password: password})
 
     if (res.token){
-        const user = await get('http://localhost:8000/api/user/', res.token)
+        const user = await get('http://vansh2101.pythonanywhere.com/api/user/', res.token)
 
         localStorage.setItem('token', res.token)
         localStorage.setItem('user', user[0].id)
